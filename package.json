@@ -1,0 +1,52 @@
+{
+  "name": "image-capture",
+  "version": "0.1.0",
+  "description": "MediaStream ImageCapture polyfill: takePhoto(), grabFrame() and more",
+  "main": "lib/imagecapture.js",
+  "jsnext:main": "src.imagecapture.js",
+  "scripts": {
+    "prepublish": "babel -d lib src/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "webpack docs/index.js docs/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dandv/imagecapture.git"
+  },
+  "keywords": [
+    "camera",
+    "webcam",
+    "photo",
+    "picture",
+    "image",
+    "capture",
+    "ImageCapture",
+    "MediaStream",
+    "getUserMedia"
+  ],
+  "author": "Dan Dascalescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dandv/imagecapture/issues"
+  },
+  "homepage": "https://github.com/dandv/imagecapture#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.6.1",
+    "eslint-config-google": "^0.6.0",
+    "webpack": "^2.1.0-beta.25"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ]
+    ]
+  }
+}
