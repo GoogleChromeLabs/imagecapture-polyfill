@@ -2,7 +2,9 @@ export let ImageCapture = window.ImageCapture;
 export let ImageCaptureError = window.ImageCaptureError;
 
 if (typeof ImageCapture === 'undefined') {
-  let _videoStreamTrack, _previewStream;
+  // Private variables storing the read-only properties of the object
+  let _videoStreamTrack;
+  let _previewStream;
   /**
    * https://www.w3.org/TR/image-capture/#ImageCaptureError
    * @type {{}} TODO

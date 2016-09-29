@@ -5,6 +5,7 @@
   "main": "lib/imagecapture.js",
   "jsnext:main": "src.imagecapture.js",
   "scripts": {
+    "lint": "eslint src/*.js docs/index.js",
     "prepublish": "babel -d lib src/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "webpack docs/index.js docs/bundle.js"

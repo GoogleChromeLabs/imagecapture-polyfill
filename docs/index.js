@@ -48,7 +48,7 @@ function processPhoto(blob) {
 }
 
 function stopFunction() {
-  interval && clearInterval(interval);  // stop frame grabbing
+  if (interval) clearInterval(interval);  // stop frame grabbing
   if (videoDevice) videoDevice.stop();  // turn off the camera
 }
 
