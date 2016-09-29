@@ -9,7 +9,7 @@ Prior to this API, in order to take a still picture from the device camera, two 
  
 # Demo
 
-[The demo](https://github.com/dandv/imagecapture) currently shows grabFrame() and takePhoto().
+[The demo](https://dandv.github.io/imagecapture) currently shows grabFrame() and takePhoto().
 
 # Quick start
 
