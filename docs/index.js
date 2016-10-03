@@ -1,5 +1,43 @@
 "use strict";
 
+let logElement = document.querySelector('#log');
+
+/**
+ * Take a list of parameters, stringify them, and join the elements by spaces
+ * @param {*[]} messages - List of messages
+ * @return {string} Space-separated list of stringified messages
+ */
+function list2string(...messages) {
+  return messages.map(message =>
+      typeof message === 'object' ? JSON.stringify(message) : message
+  ).join(' ');
+}
+
+/**
+ * Log messages to the #log element and the console
+ * @param messages - list of messages
+ */
+
+function log(...messages) {
+  console.log(...messages);
+  let p = document.createElement('p');
+  p.innerText = list2string(...messages);
+  logElement.appendChild(p);
+}
+
+/**
+ * Log messages to the #log element and the consle as errors
+ * @param messages - list of messages
+ */
+
+function err(...messages) {
+  console.error(...messages);
+  let p = document.createElement('p');
+  p.innerText = list2string(...messages);
+  p.style = 'color: red';
+  logElement.appendChild(p);
+}
+
 import {ImageCapture} from '../src/imagecapture';
 
 let interval;
@@ -22,16 +60,17 @@ navigator.mediaDevices.getUserMedia({video: true}).then(gotMedia).catch(failedTo
 function gotMedia(mediaStream) {
   // Extract video track.
   videoDevice = mediaStream.getVideoTracks()[0];
+  log('Using camera', videoDevice.label);
   // Check if this device supports a picture mode...
   let captureDevice = new ImageCapture(videoDevice, mediaStream);
   if (captureDevice) {
     interval = setInterval(function () {
       captureDevice.grabFrame().then(processFrame).catch(error => {
-        console.error((new Date()).toISOString(), error);
+        err((new Date()).toISOString(), error);
       });
 
       captureDevice.takePhoto().then(processPhoto).catch(error => {
-        console.error((new Date()).toISOString(), error);
+        err((new Date()).toISOString(), error);
       });
     }, 300);
   }
@@ -53,6 +92,6 @@ function stopFunction() {
 }
 
 function failedToGetMedia(error) {
-  console.error('Failed due to', error);
+  err('getUserMedia ailed due to', error);
   stopFunction();
 }
