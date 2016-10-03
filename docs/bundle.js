@@ -264,11 +264,6 @@ if (typeof ImageCapture === 'undefined') {
 let logElement = document.querySelector('#log');
 
 /**
- * Log messages to the #log element on the page
- * @param messages - list of messages
- */
-
-/**
  * Take a list of parameters, stringify them, and join the elements by spaces
  * @param {*[]} messages - List of messages
  * @return {string} Space-separated list of stringified messages
@@ -279,12 +274,22 @@ function list2string(...messages) {
   ).join(' ');
 }
 
+/**
+ * Log messages to the #log element and the console
+ * @param messages - list of messages
+ */
+
 function log(...messages) {
   console.log(...messages);
   let p = document.createElement('p');
   p.innerText = list2string(...messages);
   logElement.appendChild(p);
 }
+
+/**
+ * Log messages to the #log element and the consle as errors
+ * @param messages - list of messages
+ */
 
 function err(...messages) {
   console.error(...messages);
@@ -348,7 +353,7 @@ function stopFunction() {
 }
 
 function failedToGetMedia(error) {
-  err('getUserMedia ailed due to', error);
+  err('getUserMedia failed:', error);
   stopFunction();
 }
 

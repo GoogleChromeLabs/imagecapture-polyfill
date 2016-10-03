@@ -9,11 +9,6 @@ module.exports = {
     inline: true
   },
 
-  module: {
-    loaders: [
-      {test: /\.json$/, loader: 'json-loader'}
-    ]
-  },
   output: {
     path: path.join(__dirname, 'docs'),
     filename: './bundle.js'

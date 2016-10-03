@@ -122,3 +122,12 @@ For the widest compatibility, you can additionally load the [WebRTC adapter](htt
 
 For older browsers that don't support navigator.getUserMedia, you can additionally load Addy Osmani's shim with optional fallback to Flash - [getUserMedia.js](https://github.com/addyosmani/getUserMedia.js/). Alternatively, the [getUserMedia](https://github.com/otalk/getUserMedia) wrapper normalizes error handling and gives an error-first API with cross-browser support.
  
+
+ # Development
+ 
+ ```js
+ npm install
+ npm run dev
+ ```
+ 
+ Before committing, make sure you pass `npm run lint`, and run `npm run docs` to generate the documentation.

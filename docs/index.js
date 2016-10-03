@@ -92,6 +92,6 @@ function stopFunction() {
 }
 
 function failedToGetMedia(error) {
-  err('getUserMedia ailed due to', error);
+  err('getUserMedia failed:', error);
   stopFunction();
 }
