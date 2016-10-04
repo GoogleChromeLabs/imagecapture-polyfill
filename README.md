@@ -24,7 +24,7 @@ function gotMedia(mediaStream) {
   // Extract video track.
   videoDevice = mediaStream.getVideoTracks()[0];
   // Check if this device supports a picture mode...
-  let captureDevice = new ImageCapture(videoDevice, mediaStream);
+  let captureDevice = new ImageCapture(videoDevice);
   if (captureDevice) {
     captureDevice.takePhoto().then(processPhoto).catch(stopCamera);
     captureDevice.grabFrame().then(processFrame).catch(stopCamera);
@@ -61,17 +61,16 @@ Start by constructing a new ImageCapture object:
 let captureDevice;
 
 navigator.mediaDevices.getUserMedia({video: true}).then(mediaStream => {
-  captureDevice = new ImageCapture(mediaStream.getVideoTracks()[0], mediaStream);
+  captureDevice = new ImageCapture(mediaStream.getVideoTracks()[0]);
 }).catch(...)
 ```
 
 Please consult [the spec](https://w3c.github.io/mediacapture-image/#methods) for full detail on the methods.
  
-## constructor(videoStreamTrack, previewStream)
+## constructor(videoStreamTrack)
 
-Takes a MediaStreamTrack as the previewStream, and a video track (usually the first video track of the previewStream, as seen above), and returns an ImageCapture object.
+Takes a video track and returns an ImageCapture object.
 
-Note that per spec, the constructor only take the first parameter. However, without the preview stream, we can't supply a URL to the videoElement that feeds both grabFrame() and takePhoto().
 
 ## getPhotoCapabilities
 
@@ -113,12 +112,14 @@ captureDevice.grabFrame().then(imageBitmap => {
 
 The polyfill has been tested to work in current browsers:
 
-* Chrome 53
+* Chrome 55
 * Firefox 49
 * Chrome 52 for Android
 * Firefox 48 for Android
 
-For the widest compatibility, you can additionally load the [WebRTC adapter](https://github.com/webrtc/adapter).
+For the widest compatibility, you can additionally load the [WebRTC adapter](https://github.com/webrtc/adapter). That will expand support to:
+
+* Chrome 53 
 
 For older browsers that don't support navigator.getUserMedia, you can additionally load Addy Osmani's shim with optional fallback to Flash - [getUserMedia.js](https://github.com/addyosmani/getUserMedia.js/). Alternatively, the [getUserMedia](https://github.com/otalk/getUserMedia) wrapper normalizes error handling and gives an error-first API with cross-browser support.
  
@@ -130,4 +131,5 @@ For older browsers that don't support navigator.getUserMedia, you can additional
  npm run dev
  ```
  
- Before committing, make sure you pass `npm run lint`, and run `npm run docs` to generate the documentation.
+ Before committing, make sure you pass `npm run lint` without errors, and run `npm run docs` to generate the documentation.
+ 

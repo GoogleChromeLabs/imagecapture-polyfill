@@ -1,39 +1,26 @@
-"use strict";
+'use strict';
 
 let logElement = document.querySelector('#log');
 
 /**
- * Take a list of parameters, stringify them, and join the elements by spaces
- * @param {*[]} messages - List of messages
- * @return {string} Space-separated list of stringified messages
- */
-function list2string(...messages) {
-  return messages.map(message =>
-      typeof message === 'object' ? JSON.stringify(message) : message
-  ).join(' ');
-}
-
-/**
  * Log messages to the #log element and the console
- * @param messages - list of messages
+ * @param {*[]} messages - list of messages
  */
-
 function log(...messages) {
   console.log(...messages);
   let p = document.createElement('p');
-  p.innerText = list2string(...messages);
+  p.innerText = messages.join(' ');
   logElement.appendChild(p);
 }
 
 /**
- * Log messages to the #log element and the consle as errors
- * @param messages - list of messages
+ * Log messages to the #log element and the console as errors
+ * @param {*[]} messages - list of messages
  */
-
 function err(...messages) {
   console.error(...messages);
   let p = document.createElement('p');
-  p.innerText = list2string(...messages);
+  p.innerText = messages.join(' ');
   p.style = 'color: red';
   logElement.appendChild(p);
 }
@@ -66,11 +53,11 @@ function gotMedia(mediaStream) {
   if (captureDevice) {
     interval = setInterval(function () {
       captureDevice.grabFrame().then(processFrame).catch(error => {
-        err((new Date()).toISOString(), error);
+        err((new Date()).toISOString(), 'Error while grabbing frame:', error);
       });
 
       captureDevice.takePhoto().then(processPhoto).catch(error => {
-        err((new Date()).toISOString(), error);
+        err((new Date()).toISOString(), 'Error while taking photo:', error);
       });
     }, 300);
   }

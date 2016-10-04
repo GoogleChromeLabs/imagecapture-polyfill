@@ -13,8 +13,10 @@ module.exports = {
   "globals": {
     "document": false,
     "DOMException": false,
+    "MediaStream": false,
     "navigator": false,
     "Polymer": false,
+    "URL": false,
     "window": false
   }
 };

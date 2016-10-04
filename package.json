@@ -1,6 +1,6 @@
 {
   "name": "image-capture",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "MediaStream ImageCapture polyfill: takePhoto(), grabFrame() and more",
   "main": "lib/imagecapture.js",
   "jsnext:main": "src.imagecapture.js",

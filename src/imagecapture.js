@@ -2,9 +2,6 @@ export let ImageCapture = window.ImageCapture;
 export let ImageCaptureError = window.ImageCaptureError;
 
 if (typeof ImageCapture === 'undefined') {
-  // Private variables storing the read-only properties of the object
-  let _videoStreamTrack;
-  let _previewStream;
   /**
    * https://www.w3.org/TR/image-capture/#ImageCaptureError
    * @type {{}} TODO
@@ -21,6 +18,10 @@ if (typeof ImageCapture === 'undefined') {
     get errorDescription() {
       return this._errorDescription;
     }
+
+    toString() {
+      return this._errorDescription;
+    }
   };
 
   ImageCapture = class {
@@ -28,21 +29,17 @@ if (typeof ImageCapture === 'undefined') {
     /**
      * TODO https://www.w3.org/TR/image-capture/#constructors
      *
-     * Per spec, the constructor only takes the first parameter.
-     * However, without the preview stream, we can't supply a URL to the
-     * videoElement that feeds both grabFrame() and takePhoto().
-     *
-     * @param {MediaStreamTrack} videoStreamTrack - A MediaStreamTrack, usually the video track of the previewStream
-     * @param {MediaStream} previewStream - The MediaStream that provides a camera preview
+     * @param {MediaStreamTrack} videoStreamTrack - A MediaStreamTrack of the 'video' kind
      */
-    constructor(videoStreamTrack, previewStream) {
+    constructor(videoStreamTrack) {
       if (videoStreamTrack.kind !== 'video')
         throw new DOMException('NotSupportedError');
 
-      _videoStreamTrack = videoStreamTrack;
-      _previewStream = previewStream;
+      this._videoStreamTrack = videoStreamTrack;
+      // MediaStream constructor not available until Chrome 55 - https://www.chromestatus.com/feature/5912172546752512
+      this._previewStream = new MediaStream([videoStreamTrack]);
       this.videoElement = document.createElement('video');
-      this.videoElement.src = window.URL.createObjectURL(previewStream);
+      this.videoElement.src = URL.createObjectURL(this._previewStream);
       this.videoElement.muted = true;
       this.videoElement.play();  // required by Firefox
 
@@ -56,7 +53,7 @@ if (typeof ImageCapture === 'undefined') {
      * @return {MediaStreamTrack} The MediaStreamTrack passed into the constructor
      */
     get videoStreamTrack() {
-      return _videoStreamTrack;
+      return this._videoStreamTrack;
     }
 
     /**
@@ -64,7 +61,7 @@ if (typeof ImageCapture === 'undefined') {
      * @return {MediaStream} The MediaStream that provides a camera preview
      */
     get previewStream() {
-      return _previewStream;
+      return this._previewStream;
     }
 
     /**
@@ -113,15 +110,15 @@ if (typeof ImageCapture === 'undefined') {
     takePhoto(photoSettings = {}) {
       let self = this;
       return new Promise(function (resolve, reject) {
-        if (!('readyState' in self.videoStreamTrack)) {
+        if (!('readyState' in self._videoStreamTrack)) {
           // Polyfill for Firefox
-          self.videoStreamTrack.readyState = 'live';
+          self._videoStreamTrack.readyState = 'live';
         }
 
         // "If the readyState of the MediaStreamTrack provided in the constructor is not 'live',
         // the UA must return a promise rejected with a newly created ImageCaptureError object
         // whose errorDescription is set to INVALID_TRACK."
-        if (self.videoStreamTrack.readyState === 'live') {
+        if (self._videoStreamTrack.readyState === 'live') {
           // -- however, checking for `live` alone doesn't guarantee the video is ready
           if (self.videoElement.videoWidth) {
             try {
@@ -151,10 +148,10 @@ if (typeof ImageCapture === 'undefined') {
     grabFrame() {
       let self = this;
       return new Promise(function (resolve, reject) {
-        if (!('readyState' in self.videoStreamTrack))
-          self.videoStreamTrack.readyState = 'live';
+        if (!('readyState' in self._videoStreamTrack))
+          self._videoStreamTrack.readyState = 'live';
 
-        if (self.videoStreamTrack.readyState === 'live') {
+        if (self._videoStreamTrack.readyState === 'live') {
           if (self.videoElement.videoWidth) {
             try {
               // videoWidth is available after videoElement.onloadedmetadata fires
