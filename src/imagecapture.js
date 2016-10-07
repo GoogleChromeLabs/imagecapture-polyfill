@@ -57,14 +57,6 @@ if (typeof ImageCapture === 'undefined') {
     }
 
     /**
-     * https://w3c.github.io/mediacapture-image/index.html#dom-imagecapture-previewstream
-     * @return {MediaStream} The MediaStream that provides a camera preview
-     */
-    get previewStream() {
-      return this._previewStream;
-    }
-
-    /**
      * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-getphotocapabilities
      * @return {Promise<PhotoCapabilities>} Fulfilled promise with [PhotoCapabilities](https://www.w3.org/TR/image-capture/#idl-def-photocapabilities) object on success, rejected promise on failure
      */
