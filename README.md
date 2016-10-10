@@ -1,5 +1,7 @@
 # ImageCapture polyfill
 
+[![Build Status](https://travis-ci.org/dandv/imagecapture.svg?branch=master)](https://travis-ci.org/dandv/imagecapture) [![Dependency Status](https://david-dm.org/dandv/imagecapture.svg)](https://david-dm.org/dandv/imagecapture) [![devDependency Status](https://david-dm.org/dandv/imagecapture/dev-status.svg)](https://david-dm.org/dandv/imagecapture#info=devDependencies)
+
 ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.github.io/mediacapture-image/).
 
 ## Status
