@@ -1,6 +1,12 @@
 # ImageCapture polyfill
 
-ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.github.io/mediacapture-image/). As of September 2016, the only browser with partial support for the API is [Chrome](https://www.chromestatus.com/feature/4843864737185792), behind the `enable-experimental-web-platform-features` flag.
+ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.github.io/mediacapture-image/).
+
+## Status
+
+As of October 2016, the ImageCapture spec is still under [active development](https://github.com/w3c/mediacapture-image/issues). The only browser with partial support for the API is [Chrome](https://www.chromestatus.com/feature/4843864737185792), behind the `enable-experimental-web-platform-features` flag.
+
+## Prior art
 
 Prior to this API, in order to take a still picture from the device camera, two approaches have been used:
 
