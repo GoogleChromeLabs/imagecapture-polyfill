@@ -8,7 +8,8 @@ module.exports = {
         "named": "never"
       }
     ],
-    "no-negated-condition": "warn"
+    "no-negated-condition": "warn",
+    "spaced-comment": ["error", "always", { "exceptions": ["/"] }]
   },
   "globals": {
     "document": false,
