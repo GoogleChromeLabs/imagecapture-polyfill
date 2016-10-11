@@ -114,10 +114,9 @@ if (typeof ImageCapture === 'undefined') {
     /**
      * TODO
      * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-takephoto
-     * @param {Object} photoSettings - Photo settings dictionary, https://www.w3.org/TR/image-capture/#idl-def-photosettings
      * @return {Promise<Blob>} Fulfilled promise with [Blob](https://www.w3.org/TR/FileAPI/#blob) argument on success; rejected promise on failure
      */
-    takePhoto(photoSettings = {}) {
+    takePhoto() {
       let self = this;
       return new Promise(function (resolve, reject) {
         if (!('readyState' in self._videoStreamTrack)) {
@@ -135,7 +134,6 @@ if (typeof ImageCapture === 'undefined') {
               self.canvasElement.width = self.videoElement.videoWidth;
               self.canvasElement.height = self.videoElement.videoHeight;
               self.canvas2dContext.drawImage(self.videoElement, 0, 0);
-              // TODO polyfill photoSettings
               self.canvasElement.toBlob(blob => {
                 resolve(blob);
               });
