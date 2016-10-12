@@ -88,13 +88,11 @@ TBD
 
 TBD
 
-## takePhoto(photoSettings)
+## takePhoto
 
-Apply the photo settings and capture the video stream into a [Blob](https://www.w3.org/TR/FileAPI/#blob) containing a single still image.
+Capture the video stream into a [Blob](https://www.w3.org/TR/FileAPI/#blob) containing a single still image.
 
-Optional argument: [photo settings](https://www.w3.org/TR/image-capture/#idl-def-photosettings) dictionary.
-
-Returns a Promise that resolves to a Blob on success, or is rejected with `ImageCaptureError` on failure.
+Returns a Promise that resolves to a Blob on success, or is rejected with `DOMException` on failure.
 
 ```js
 captureDevice.takePhoto().then(blob => {
@@ -107,7 +105,7 @@ captureDevice.takePhoto().then(blob => {
 
 Gather data from the video stream into an [ImageBitmap](https://www.w3.org/TR/html51/webappapis.html#webappapis-images) object. The width and height of the ImageBitmap object are derived from the constraints of the video stream track passed to the constructor.
 
-Returns a Promise that resolves to an ImageBitmap on success, or is rejected with `ImageCaptureError` on failure.
+Returns a Promise that resolves to an ImageBitmap on success, or is rejected with `DOMException` on failure.
 
 ```js
 captureDevice.grabFrame().then(imageBitmap => {

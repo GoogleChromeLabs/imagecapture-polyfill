@@ -17,31 +17,8 @@
 // MediaStream ImageCapture polyfill
 
 export let ImageCapture = window.ImageCapture;
-export let ImageCaptureError = window.ImageCaptureError;
 
 if (typeof ImageCapture === 'undefined') {
-  /**
-   * https://www.w3.org/TR/image-capture/#ImageCaptureError
-   * @type {{}} TODO
-   */
-  ImageCaptureError = class {
-    constructor(errorDescription) {
-      // https://www.w3.org/TR/image-capture/#dom-imagecaptureerror-errordescription
-      this._errorDescription = errorDescription;
-    }
-
-    /**
-     * @return {DOMString} Acceptable values: FRAME_ERROR, OPTIONS_ERROR, PHOTO_ERROR, INVALID_TRACK, and ERROR_UNKNOWN
-     */
-    get errorDescription() {
-      return this._errorDescription;
-    }
-
-    toString() {
-      return this._errorDescription;
-    }
-  };
-
   ImageCapture = class {
 
     /**
@@ -54,6 +31,11 @@ if (typeof ImageCapture === 'undefined') {
         throw new DOMException('NotSupportedError');
 
       this._videoStreamTrack = videoStreamTrack;
+      if (!('readyState' in this._videoStreamTrack)) {
+        // Polyfill for Firefox
+        this._videoStreamTrack.readyState = 'live';
+      }
+
       // MediaStream constructor not available until Chrome 55 - https://www.chromestatus.com/feature/5912172546752512
       this._previewStream = new MediaStream([videoStreamTrack]);
       this.videoElement = document.createElement('video');
@@ -79,8 +61,8 @@ if (typeof ImageCapture === 'undefined') {
      * @return {Promise<PhotoCapabilities>} Fulfilled promise with [PhotoCapabilities](https://www.w3.org/TR/image-capture/#idl-def-photocapabilities) object on success, rejected promise on failure
      */
     getPhotoCapabilities() {
-      return new Promise(function (resolve, reject) {
-        // TODO
+      return new Promise(function executorGPC(resolve, reject) {
+        // TODO see https://github.com/w3c/mediacapture-image/issues/97
         let MediaSettingsRange = {
           current: 0, min: 0, max: 0
         };
@@ -96,7 +78,7 @@ if (typeof ImageCapture === 'undefined') {
           whiteBalanceMode: 'none',
           zoom: MediaSettingsRange
         });
-        reject(new ImageCaptureError('OPTIONS_ERROR'));
+        reject(new DOMException('OperationError'));
       });
     }
 
@@ -106,7 +88,7 @@ if (typeof ImageCapture === 'undefined') {
      * @return {Promise<void>} Fulfilled promise on success, rejected promise on failure
      */
     setOptions(photoSettings = {}) {
-      return new Promise(function (resolve, reject) {
+      return new Promise(function executorSO(resolve, reject) {
         // TODO
       });
     }
@@ -118,15 +100,9 @@ if (typeof ImageCapture === 'undefined') {
      */
     takePhoto() {
       let self = this;
-      return new Promise(function (resolve, reject) {
-        if (!('readyState' in self._videoStreamTrack)) {
-          // Polyfill for Firefox
-          self._videoStreamTrack.readyState = 'live';
-        }
-
-        // "If the readyState of the MediaStreamTrack provided in the constructor is not 'live',
-        // the UA must return a promise rejected with a newly created ImageCaptureError object
-        // whose errorDescription is set to INVALID_TRACK."
+      return new Promise(function executorTP(resolve, reject) {
+        // `If the readyState of the MediaStreamTrack provided in the constructor is not live,
+        // return a promise rejected with a new DOMException whose name is "InvalidStateError".`
         if (self._videoStreamTrack.readyState === 'live') {
           // -- however, checking for `live` alone doesn't guarantee the video is ready
           if (self.videoElement.videoWidth) {
@@ -138,13 +114,13 @@ if (typeof ImageCapture === 'undefined') {
                 resolve(blob);
               });
             } catch (error) {
-              reject(new ImageCaptureError('PHOTO_ERROR'));
+              reject(new DOMException('UnknownError'));
             }
           } else {
-            reject(new ImageCaptureError('PHOTO_ERROR'));
+            reject(new DOMException('UnknownError'));
           }
         } else {
-          reject(new ImageCaptureError('INVALID_TRACK'));
+          reject(new DOMException('InvalidStateError'));
         }
       });
     }
@@ -155,10 +131,7 @@ if (typeof ImageCapture === 'undefined') {
      */
     grabFrame() {
       let self = this;
-      return new Promise(function (resolve, reject) {
-        if (!('readyState' in self._videoStreamTrack))
-          self._videoStreamTrack.readyState = 'live';
-
+      return new Promise(function executorGF(resolve, reject) {
         if (self._videoStreamTrack.readyState === 'live') {
           if (self.videoElement.videoWidth) {
             try {
@@ -170,13 +143,13 @@ if (typeof ImageCapture === 'undefined') {
               // TODO polyfill https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapFactories/createImageBitmap for IE
               resolve(window.createImageBitmap(self.canvasElement));
             } catch (error) {
-              reject(new ImageCaptureError('FRAME_ERROR'));
+              reject(new DOMException('UnknownError'));
             }
           } else {
-            reject(new ImageCaptureError('FRAME_ERROR'));
+            reject(new DOMException('UnknownError'));
           }
         } else {
-          reject(new ImageCaptureError('INVALID_TRACK'));
+          reject(new DOMException('InvalidStateError'));
         }
       });
     }
