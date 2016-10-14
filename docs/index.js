@@ -33,7 +33,7 @@ function log(...messages) {
 
 /**
  * Log messages to the #log element and the console as errors
- * @param {*[]} messages - list of messages
+ * @param {*} messages - list of messages
  */
 function err(...messages) {
   console.error(...messages);
@@ -68,17 +68,15 @@ function gotMedia(mediaStream) {
   log('Using camera', videoDevice.label);
   // Check if this device supports a picture mode...
   let captureDevice = new ImageCapture(videoDevice, mediaStream);
-  if (captureDevice) {
-    interval = setInterval(function () {
-      captureDevice.grabFrame().then(processFrame).catch(error => {
-        err((new Date()).toISOString(), 'Error while grabbing frame:', error);
-      });
+  interval = setInterval(function () {
+    captureDevice.grabFrame().then(processFrame).catch(error => {
+      err((new Date()).toISOString(), 'Error while grabbing frame:', error);
+    });
 
-      captureDevice.takePhoto().then(processPhoto).catch(error => {
-        err((new Date()).toISOString(), 'Error while taking photo:', error);
-      });
-    }, 300);
-  }
+    captureDevice.takePhoto().then(processPhoto).catch(error => {
+      err((new Date()).toISOString(), 'Error while taking photo:', error);
+    });
+  }, 300);
 }
 
 function processFrame(imageBitmap) {
