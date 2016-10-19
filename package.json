@@ -1,6 +1,6 @@
 {
   "name": "image-capture",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "MediaStream ImageCapture polyfill: takePhoto(), grabFrame() and more",
   "main": "lib/imagecapture.js",
   "jsnext:main": "src/imagecapture.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dandv/imagecapture.git"
+    "url": "git+https://github.com/GoogleChrome/imagecapture-polyfill.git"
   },
   "keywords": [
     "camera",
@@ -26,19 +26,19 @@
     "MediaStream",
     "getUserMedia"
   ],
-  "author": "Dan Dascalescu",
+  "author": "Dan Dascalescu (dandv)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dandv/imagecapture/issues"
+    "url": "https://github.com/GoogleChrome/imagecapture-polyfill/issues"
   },
-  "homepage": "https://github.com/dandv/imagecapture#readme",
+  "homepage": "https://github.com/GoogleChrome/imagecapture-polyfill#readme",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
     "eslint": "^3.6.1",
-    "eslint-config-google": "^0.6.0",
+    "eslint-config-google": "^0.7.0",
     "localtunnel": "^1.8.1",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.8"

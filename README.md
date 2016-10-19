@@ -1,6 +1,6 @@
 # ImageCapture polyfill
 
-[![Build Status](https://travis-ci.org/dandv/imagecapture.svg?branch=master)](https://travis-ci.org/dandv/imagecapture) [![Dependency Status](https://david-dm.org/dandv/imagecapture.svg)](https://david-dm.org/dandv/imagecapture) [![devDependency Status](https://david-dm.org/dandv/imagecapture/dev-status.svg)](https://david-dm.org/dandv/imagecapture#info=devDependencies)
+[![Build Status](https://travis-ci.org/GoogleChrome/imagecapture-polyfill.svg?branch=master)](https://travis-ci.org/GoogleChrome/imagecapture-polyfill) [![Dependency Status](https://david-dm.org/GoogleChrome/imagecapture-polyfill.svg)](https://david-dm.org/GoogleChrome/imagecapture-polyfill) [![devDependency Status](https://david-dm.org/GoogleChrome/imagecapture-polyfill/dev-status.svg)](https://david-dm.org/GoogleChrome/imagecapture-polyfill#info=devDependencies)
 
 ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.github.io/mediacapture-image/).
 
@@ -132,9 +132,18 @@ For older browsers that don't support navigator.getUserMedia, you can additional
 
 # Development
  
- ```js
+ ## [yarn](https://code.facebook.com/posts/1840075619545360)
+ 
+ ```sh
+ yarn
+ yarn run dev
+ ```
+ 
+ ## npm (slower)
+ 
+ ```sh
  npm install
  npm run dev
  ```
  
-Before committing, make sure you pass `npm run lint` without errors, and run `npm run docs` to generate the documentation.
+Before committing, make sure you pass yarn/npm `run lint` without errors, and run yarn/npm `run docs` to generate the demo.

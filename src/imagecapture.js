@@ -64,7 +64,7 @@ if (typeof ImageCapture === 'undefined') {
       return new Promise(function executorGPC(resolve, reject) {
         // TODO see https://github.com/w3c/mediacapture-image/issues/97
         let MediaSettingsRange = {
-          current: 0, min: 0, max: 0
+          current: 0, min: 0, max: 0,
         };
         resolve({
           exposureCompensation: MediaSettingsRange,
@@ -76,7 +76,7 @@ if (typeof ImageCapture === 'undefined') {
           iso: MediaSettingsRange,
           redEyeReduction: false,
           whiteBalanceMode: 'none',
-          zoom: MediaSettingsRange
+          zoom: MediaSettingsRange,
         });
         reject(new DOMException('OperationError'));
       });
