@@ -132,18 +132,18 @@ For older browsers that don't support navigator.getUserMedia, you can additional
 
 # Development
  
- ## [yarn](https://code.facebook.com/posts/1840075619545360)
- 
- ```sh
- yarn
- yarn run dev
- ```
- 
- ## npm (slower)
- 
- ```sh
- npm install
- npm run dev
- ```
+## [yarn](https://code.facebook.com/posts/1840075619545360)
+
+```sh
+yarn
+yarn run dev
+```
+
+## npm (slower)
+
+```sh
+npm install
+npm run dev
+```
  
 Before committing, make sure you pass yarn/npm `run lint` without errors, and run yarn/npm `run docs` to generate the demo.
