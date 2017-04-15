@@ -1,13 +1,13 @@
 {
   "name": "image-capture",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "MediaStream ImageCapture polyfill: takePhoto(), grabFrame() and more",
   "main": "lib/imagecapture.js",
   "jsnext:main": "src/imagecapture.js",
   "scripts": {
     "lint": "eslint src/*.js docs/index.js",
     "prepublish": "babel -d lib src/",
-    "dev": "webpack-dev-server --progress --colors",
+    "dev": "webpack-dev-server --progress",
     "lt": "lt --port 8080 --subdomain imagecapture",
     "docs": "webpack"
   },
@@ -48,7 +48,7 @@
       [
         "es2015",
         {
-          "modules": false
+          "modules": "umd"
         }
       ]
     ]

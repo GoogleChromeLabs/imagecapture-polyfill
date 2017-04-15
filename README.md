@@ -118,10 +118,10 @@ captureDevice.grabFrame().then(imageBitmap => {
 
 The polyfill has been tested to work in current browsers:
 
-* Chrome 55
-* Firefox 49
-* Chrome 52 for Android
-* Firefox 48 for Android
+* Chrome 55+
+* Firefox 49+
+* Chrome 52+ for Android
+* Firefox 48+ for Android
 
 For the widest compatibility, you can additionally load the [WebRTC adapter](https://github.com/webrtc/adapter). That will expand support to:
 
@@ -132,7 +132,7 @@ For older browsers that don't support navigator.getUserMedia, you can additional
 
 # Development
  
-## [yarn](https://code.facebook.com/posts/1840075619545360)
+## [yarn](https://yarnpkg.com/en/)
 
 ```sh
 yarn
