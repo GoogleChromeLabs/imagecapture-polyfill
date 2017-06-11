@@ -7,3 +7,7 @@ demo
 tests
 .travis.yml
 *.html
+**/*.bak
+src/favicon.svg
+yarn.lock
+CONTRIBUTING.md

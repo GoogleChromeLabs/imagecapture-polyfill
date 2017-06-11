@@ -14,12 +14,24 @@ Prior to this API, in order to take a still picture from the device camera, two 
 
 1. Set the source of a `<video>` element to a stream obtained via [`navigator[.mediaDevices].getUserMedia`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia), then use a 2D canvas context to [`drawImage`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage) from that video. The `canvas` can return a URL to be used as the `src` attribute of an `<img>` element, via [`.toDataURL('image/<format>')`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL). ([1](http://www.html5rocks.com/en/tutorials/getusermedia/intro/#toc-screenshot), [2](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos))
 2. Use the [HTML Media Capture API](https://w3c.github.io/html-media-capture/), i.e. ` <input type="file" name="image" accept="image/*" capture>`
- 
+
 # Demo
 
 [The demo](https://dandv.github.io/imagecapture) currently shows grabFrame() and takePhoto().
 
 # Quick start
+
+```shell
+yarn add image-capture
+```
+
+Or, with npm:
+
+```shell
+npm install --save image-capture
+```
+
+In your JS code:
 
 ```js
 let videoDevice;
