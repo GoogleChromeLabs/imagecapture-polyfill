@@ -1,13 +1,13 @@
 {
   "name": "image-capture",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "MediaStream ImageCapture polyfill: takePhoto(), grabFrame() and more",
   "main": "lib/imagecapture.js",
   "module": "src/imagecapture.js",
   "jsnext:main": "src/imagecapture.js",
   "scripts": {
     "lint": "eslint src/*.js docs/index.js",
-    "prepublish": "babel -d lib src/",
+    "prepare": "babel -d lib src/ && uglifyjs lib/imagecapture.js --compress --mangle --comments -o lib/imagecapture.min.js",
     "dev": "webpack-dev-server --progress",
     "lt": "lt --port 8080 --subdomain imagecapture",
     "docs": "webpack"
@@ -41,6 +41,7 @@
     "eslint": "^3.6.1",
     "eslint-config-google": "^0.7.0",
     "localtunnel": "^1.8.1",
+    "uglify-js": "^3.0.24",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.8"
   },
