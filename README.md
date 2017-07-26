@@ -6,7 +6,7 @@ ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.g
 
 ## Status
 
-As of October 2016, the ImageCapture spec is still under [active development](https://github.com/w3c/mediacapture-image/issues). Chrome and Firefox have partial support for the API behind flags. See the [ImageCapture browser support](https://github.com/w3c/mediacapture-image/blob/gh-pages/implementation-status.md) page for details.
+As of June 2017, the ImageCapture spec is [relatively stable](https://github.com/w3c/mediacapture-image/issues). Chrome supports the API starting with M59 (earlier versions require setting a flag) and Firefox has partial support behind a flag. See the [ImageCapture browser support](https://github.com/w3c/mediacapture-image/blob/gh-pages/implementation-status.md) page for details.
 
 ## Prior art
 
