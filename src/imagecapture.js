@@ -59,7 +59,9 @@ if (typeof ImageCapture === 'undefined') {
 
     /**
      * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-getphotocapabilities
-     * @return {Promise<PhotoCapabilities>} Fulfilled promise with [PhotoCapabilities](https://www.w3.org/TR/image-capture/#idl-def-photocapabilities) object on success, rejected promise on failure
+     * @return {Promise<PhotoCapabilities>} Fulfilled promise with
+     * [PhotoCapabilities](https://www.w3.org/TR/image-capture/#idl-def-photocapabilities)
+     * object on success, rejected promise on failure
      */
     getPhotoCapabilities() {
       return new Promise(function executorGPC(resolve, reject) {
@@ -97,7 +99,8 @@ if (typeof ImageCapture === 'undefined') {
     /**
      * TODO
      * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-takephoto
-     * @return {Promise<Blob>} Fulfilled promise with [Blob](https://www.w3.org/TR/FileAPI/#blob) argument on success; rejected promise on failure
+     * @return {Promise<Blob>} Fulfilled promise with [Blob](https://www.w3.org/TR/FileAPI/#blob)
+     * argument on success; rejected promise on failure
      */
     takePhoto() {
       let self = this;
@@ -128,7 +131,9 @@ if (typeof ImageCapture === 'undefined') {
 
     /**
      * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-grabframe
-     * @return {Promise<ImageBitmap>} Fulfilled promise with [ImageBitmap](https://www.w3.org/TR/html51/webappapis.html#webappapis-images) argument on success; rejected promise on failure
+     * @return {Promise<ImageBitmap>} Fulfilled promise with
+     * [ImageBitmap](https://www.w3.org/TR/html51/webappapis.html#webappapis-images)
+     * argument on success; rejected promise on failure
      */
     grabFrame() {
       let self = this;
