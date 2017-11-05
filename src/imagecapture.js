@@ -45,7 +45,8 @@ if (typeof ImageCapture === 'undefined') {
       });
       this.videoElement.src = URL.createObjectURL(this._previewStream);
       this.videoElement.muted = true;
-      this.videoElement.play();  // required by Firefox
+      this.videoElement.setAttribute('playsinline', ''); // Required by Safari on iOS 11. See https://webkit.org/blog/6784
+      this.videoElement.play(); // Required by Firefox and Safari
 
       this.canvasElement = document.createElement('canvas');
       // TODO Firefox has https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas
