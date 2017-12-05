@@ -1,6 +1,6 @@
 # ImageCapture polyfill
 
-[![Build Status](https://travis-ci.org/GoogleChrome/imagecapture-polyfill.svg?branch=master)](https://travis-ci.org/GoogleChrome/imagecapture-polyfill) [![Dependency Status](https://david-dm.org/GoogleChrome/imagecapture-polyfill.svg)](https://david-dm.org/GoogleChrome/imagecapture-polyfill) [![devDependency Status](https://david-dm.org/GoogleChrome/imagecapture-polyfill/dev-status.svg)](https://david-dm.org/GoogleChrome/imagecapture-polyfill#info=devDependencies)
+[![Build Status](https://travis-ci.org/GoogleChromeLabs/imagecapture-polyfill.svg?branch=master)](https://travis-ci.org/GoogleChromeLabs/imagecapture-polyfill) [![Dependency Status](https://david-dm.org/GoogleChromeLabs/imagecapture-polyfill.svg)](https://david-dm.org/GoogleChromeLabs/imagecapture-polyfill) [![devDependency Status](https://david-dm.org/GoogleChromeLabs/imagecapture-polyfill/dev-status.svg)](https://david-dm.org/GoogleChromeLabs/imagecapture-polyfill#info=devDependencies)
 
 ImageCapture is a polyfill for the [MediaStream Image Capture API](https://w3c.github.io/mediacapture-image/).
 
