@@ -43,7 +43,11 @@ if (typeof ImageCapture === 'undefined') {
       this.videoElementPlaying = new Promise(resolve => {
         this.videoElement.addEventListener('playing', resolve);
       });
-      this.videoElement.srcObject = this._previewStream;
+      if (this.videoElement.srcObject) {
+          this.videoElement.srcObject = this._previewStream; // Safari 11 doesn't allow use of createObjectURL for MediaStream
+      } else {
+          this.videoElement.src = URL.createObjectURL(this._previewStream);
+      }
       this.videoElement.muted = true;
       this.videoElement.setAttribute('playsinline', ''); // Required by Safari on iOS 11. See https://webkit.org/blog/6784
       this.videoElement.play();
