@@ -43,7 +43,7 @@ if (typeof ImageCapture === 'undefined') {
       this.videoElementPlaying = new Promise(resolve => {
         this.videoElement.addEventListener('playing', resolve);
       });
-      if (this.videoElement.srcObject) {
+      if (HTMLMediaElement) {
           this.videoElement.srcObject = this._previewStream; // Safari 11 doesn't allow use of createObjectURL for MediaStream
       } else {
           this.videoElement.src = URL.createObjectURL(this._previewStream);
