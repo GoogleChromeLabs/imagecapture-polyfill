@@ -159,6 +159,8 @@ if (typeof ImageCapture === 'undefined') {
       });
     }
   };
+
+  window.ImageCapture = ImageCapture;
 }
 
 window.ImageCapture = ImageCapture;
