@@ -151,11 +151,13 @@ yarn
 yarn run dev
 ```
 
-## npm (slower)
+## npm
 
 ```sh
 npm install
 npm run dev
 ```
+
+To [make your server accessible outside of `localhost`](https://www.npmjs.com/package/localtunnel), run npm/yarn `run lt`.
  
 Before committing, make sure you pass yarn/npm `run lint` without errors, and run yarn/npm `run docs` to generate the demo.

@@ -2,7 +2,7 @@
  * MediaStream ImageCapture polyfill
  *
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,9 +44,9 @@ if (typeof ImageCapture === 'undefined') {
         this.videoElement.addEventListener('playing', resolve);
       });
       if (HTMLMediaElement) {
-          this.videoElement.srcObject = this._previewStream; // Safari 11 doesn't allow use of createObjectURL for MediaStream
+        this.videoElement.srcObject = this._previewStream;  // Safari 11 doesn't allow use of createObjectURL for MediaStream
       } else {
-          this.videoElement.src = URL.createObjectURL(this._previewStream);
+        this.videoElement.src = URL.createObjectURL(this._previewStream);
       }
       this.videoElement.muted = true;
       this.videoElement.setAttribute('playsinline', ''); // Required by Safari on iOS 11. See https://webkit.org/blog/6784
@@ -74,7 +74,7 @@ if (typeof ImageCapture === 'undefined') {
     getPhotoCapabilities() {
       return new Promise(function executorGPC(resolve, reject) {
         // TODO see https://github.com/w3c/mediacapture-image/issues/97
-        let MediaSettingsRange = {
+        const MediaSettingsRange = {
           current: 0, min: 0, max: 0,
         };
         resolve({
@@ -111,7 +111,7 @@ if (typeof ImageCapture === 'undefined') {
      * argument on success; rejected promise on failure
      */
     takePhoto() {
-      let self = this;
+      const self = this;
       return new Promise(function executorTP(resolve, reject) {
         // `If the readyState of the MediaStreamTrack provided in the constructor is not live,
         // return a promise rejected with a new DOMException whose name is "InvalidStateError".`
@@ -138,7 +138,7 @@ if (typeof ImageCapture === 'undefined') {
      * argument on success; rejected promise on failure
      */
     grabFrame() {
-      let self = this;
+      const self = this;
       return new Promise(function executorGF(resolve, reject) {
         // `If the readyState of the MediaStreamTrack provided in the constructor is not live,
         // return a promise rejected with a new DOMException whose name is "InvalidStateError".`
@@ -160,3 +160,5 @@ if (typeof ImageCapture === 'undefined') {
     }
   };
 }
+
+window.ImageCapture = ImageCapture;

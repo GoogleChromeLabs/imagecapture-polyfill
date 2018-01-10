@@ -6,11 +6,11 @@ module.exports = {
 
   devServer: {
     contentBase: './docs',
-    inline: true
+    inline: true,
   },
 
   output: {
     path: path.join(__dirname, 'docs'),
-    filename: './bundle.js'
-  }
+    filename: './bundle.js',
+  },
 };

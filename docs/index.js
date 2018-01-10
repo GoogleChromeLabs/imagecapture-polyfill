@@ -1,4 +1,4 @@
-// Copyright 2016 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 'use strict';
 
-let logElement = document.querySelector('#log');
+const logElement = document.querySelector('#log');
 
 /**
  * Log messages to the #log element and the console
@@ -26,7 +26,7 @@ let logElement = document.querySelector('#log');
  */
 function log(...messages) {
   console.log(...messages);
-  let p = document.createElement('p');
+  const p = document.createElement('p');
   p.innerText = messages.join(' ');
   logElement.appendChild(p);
 }
@@ -37,7 +37,7 @@ function log(...messages) {
  */
 function err(...messages) {
   console.error(...messages);
-  let p = document.createElement('p');
+  const p = document.createElement('p');
   p.innerText = messages.join(' ');
   p.style = 'color: red';
   logElement.appendChild(p);
@@ -46,9 +46,9 @@ function err(...messages) {
 import {ImageCapture} from '../src/imagecapture';
 
 let interval;
-let canvas = document.getElementById('frame');
+const canvas = document.getElementById('frame');
 
-let photo = document.getElementById('photo');
+const photo = document.getElementById('photo');
 photo.addEventListener('load', function () {
   // After the image loads, discard the image object to release the memory
   window.URL.revokeObjectURL(photo.src);
@@ -71,7 +71,7 @@ function gotMedia(mediaStream) {
   videoDevice = mediaStream.getVideoTracks()[0];
   log('Using camera', videoDevice.label);
 
-  let captureDevice = new ImageCapture(videoDevice, mediaStream);
+  const captureDevice = new ImageCapture(videoDevice, mediaStream);
   interval = setInterval(function () {
     captureDevice.grabFrame().then(processFrame).catch(error => {
       err((new Date()).toISOString(), 'Error while grabbing frame:', error);

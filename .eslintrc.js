@@ -1,13 +1,13 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es6': true
+  env: {
+    browser: true,
+    es6: true
   },
-  'parserOptions': {
-    'sourceType': 'module',
+  parserOptions: {
+    sourceType: 'module',
   },
-  'extends': 'google',
-  'rules': {
+  extends: 'google',
+  rules: {
     'max-len': [ 'warn',
       { code: 130 }  // 130 on GitHub, 80 on npmjs.org for README.md code blocks
     ],
@@ -15,17 +15,17 @@ module.exports = {
     'space-before-function-paren': [
       'error',
       {
-        'anonymous': 'always',
-        'named': 'never'
+        anonymous: 'always',
+        named: 'never'
       }
     ],
     'no-negated-condition': 'warn',
-    'spaced-comment': ['error', 'always', { 'exceptions': ['/'] }]
+    'spaced-comment': ['error', 'always', { exceptions: ['/'] }]
   },
-  'globals': {
-    'DOMException': false,
-    'MediaStream': false,
-    'Polymer': false,
-    'URL': false,
+  globals: {
+    DOMException: false,
+    MediaStream: false,
+    Polymer: false,
+    URL: false,
   }
 };
