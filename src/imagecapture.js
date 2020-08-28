@@ -123,7 +123,7 @@ if (typeof ImageCapture === 'undefined') {
             self.canvasElement.width = self.videoElement.videoWidth;
             self.canvasElement.height = self.videoElement.videoHeight;
             self.canvas2dContext.drawImage(self.videoElement, 0, 0);
-            self.canvasElement.toBlob(resolve);
+            self.canvasElement.toBlob(resolve, "image/jpeg");
           } catch (error) {
             reject(new DOMException('UnknownError'));
           }
